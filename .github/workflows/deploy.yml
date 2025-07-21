@@ -71,5 +71,5 @@ jobs:
             --namespace robot-shop \
             --values helm/values.yaml
 
-      # - name: Apply Robot Shop Ingress
+      ### - name: Apply Robot Shop Ingress
       #   run: kubectl apply -f helm/robot-shop-ingress.yaml
