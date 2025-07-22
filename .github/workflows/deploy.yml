@@ -150,7 +150,7 @@ jobs:
 
       - name: Deploy Robot Shop with Helm
         run: |
-          helm upgrade robot-shop ./helm \
+          helm upgrade robot-shop ./AKS/helm \
             --install \
             --namespace robot-shop \
             --values AKS/helm/values.yaml \
