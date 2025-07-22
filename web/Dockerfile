@@ -9,7 +9,10 @@ ENV CATALOGUE_HOST=catalogue \
     PAYMENT_HOST=payment \
     RATINGS_HOST=ratings 
 
-COPY entrypoint.sh /root/
+# COPY entrypoint.sh /root/
+# ENTRYPOINT ["/root/entrypoint.sh"]
+COPY entrypoint.sh /root/entrypoint.sh
+RUN chmod +x /root/entrypoint.sh
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
