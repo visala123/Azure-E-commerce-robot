@@ -1,11 +1,11 @@
 #
 # Build
 #
-FROM debian:10 AS build
-#FROM debian:12 AS build
+#FROM debian:10 AS build
+FROM debian:12 AS build
 
-RUN apt-get update && apt-get -y install maven
-#RUN apt-get update && apt-get -y install maven openjdk-17-jdk
+#RUN apt-get update && apt-get -y install maven
+RUN apt-get update && apt-get -y install maven openjdk-17-jdk
 
 WORKDIR /opt/shipping
 
