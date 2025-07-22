@@ -89,27 +89,27 @@
       strategy:
       matrix:
         service: [user, cart, web, catalogue, dispatch, payment, shipping]
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v3
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        - name: Azure Login
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Azure ACR Login
-        run: |
-          az acr login --name ${{ secrets.ACR_LOGIN_SERVER }}
+        - name: Azure ACR Login
+          run: |
+            az acr login --name ${{ secrets.ACR_LOGIN_SERVER }}
 
-      - name: Build and Push Image to ACR
-        run: |
-          IMAGE=${{ secrets.ACR_LOGIN_SERVER }}/${{ matrix.service }}:latest
-          docker build -t $IMAGE ./${{ matrix.service }}
-          docker push $IMAGE
+        - name: Build and Push Image to ACR
+          run: |
+            IMAGE=${{ secrets.ACR_LOGIN_SERVER }}/${{ matrix.service }}:latest
+            docker build -t $IMAGE ./${{ matrix.service }}
+            docker push $IMAGE
 
     deploy:
       name: Deploy to AKS
