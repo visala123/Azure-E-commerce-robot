@@ -83,10 +83,10 @@
     workflow_dispatch:
 
   jobs:
-  build:
-    name: Build and Push ${{ matrix.service }} Image
-    runs-on: ubuntu-latest
-    strategy:
+    build:
+      name: Build and Push ${{ matrix.service }} Image
+      runs-on: ubuntu-latest
+      strategy:
       matrix:
         service: [user, cart, web, catalogue, dispatch, payment, shipping]
     steps:
@@ -111,10 +111,10 @@
           docker build -t $IMAGE ./${{ matrix.service }}
           docker push $IMAGE
 
-  deploy:
-    name: Deploy to AKS
-    runs-on: ubuntu-latest
-    needs: build
+    deploy:
+      name: Deploy to AKS
+      runs-on: ubuntu-latest
+      needs: build
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
