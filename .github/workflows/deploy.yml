@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [rs-user, rs-cart, rs-web, rs-catalogue, rs-dispatch, rs-payment, rs-shipping]
+        service: [user, cart, web, catalogue, dispatch, payment, shipping]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
