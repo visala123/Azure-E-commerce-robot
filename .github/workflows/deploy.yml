@@ -126,32 +126,32 @@
 
         - name: Set AKS Context
           run: |
-           az aks get-credentials \
-            --resource-group ecommerce-demo \
-            --name three-tier \
-            --overwrite-existing
+            az aks get-credentials \
+              --resource-group ecommerce-demo \
+              --name three-tier \
+              --overwrite-existing
 
         - name: Create Namespace if Not Exists
           run: |
-           kubectl get ns robot-shop || kubectl create ns robot-shop
+            kubectl get ns robot-shop || kubectl create ns robot-shop
 
         - name: Add Ingress-NGINX Helm Repo
           run: |
-           helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-           helm repo update
+            helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+            helm repo update
 
         - name: Install Ingress-NGINX
           run: |
-           kubectl create namespace ingress-nginx --dry-run=client -o yaml | kubectl apply -f -
-           helm upgrade ingress-nginx ingress-nginx/ingress-nginx \
-            --install \
-            --namespace ingress-nginx
+            kubectl create namespace ingress-nginx --dry-run=client -o yaml | kubectl apply -f -
+            helm upgrade ingress-nginx ingress-nginx/ingress-nginx \
+              --install \
+              --namespace ingress-nginx
         
         - name: Deploy Robot Shop with Helm
           run: |
-           helm upgrade robot-shop ./helm \
-            --install \
-            --namespace robot-shop \
-            --values AKS/helm/values.yaml
-            --set image.repo=${{ secrets.ACR_LOGIN_SERVER }} \
-            --set image.version=latest
+            helm upgrade robot-shop ./helm \
+              --install \
+              --namespace robot-shop \
+              --values AKS/helm/values.yaml
+              --set image.repo=${{ secrets.ACR_LOGIN_SERVER }} \
+              --set image.version=latest
