@@ -1,7 +1,7 @@
 # Registry and repository for Docker images
 # Default is docker/robotshop/image:latest
 image:
-  repo: myregistry123v.azurecr.io   # robotshop
+  repo:  robotshop  # myregistry123v.azurecr.io
   version: latest
   pullPolicy: IfNotPresent
 
